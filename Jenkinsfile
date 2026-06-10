@@ -12,39 +12,22 @@ pipeline {
                 bat 'docker --version'
             }
         }
-        
-        stage('Git Checkout') {
-            steps {
-                git credentialsId: 'git_credentials',
-                    url: 'https://github.com/ron025533/triangle-app.git'
-            }
-        }
 
         stage('Build the application') {
             steps {
-                sh 'mvn clean install'
+                bat 'mvn clean package'
             }
         }
 
         stage('Unit Test Execution') {
             steps {
-                sh 'mvn test'
+                bat 'mvn test'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t aaronandrianarivony/triangle-app:1.0.0 .'
-            }
-        }
-
-        stage('Push to Docker Hub') {
-            steps {
-                withCredentials([string(credentialsId: 'dockerhubpass',
-                                        variable: 'dockerHubPass')]) {
-                    sh 'docker login -u aaronandrianarivony -p $dockerHubPass'
-                    sh 'docker push aaronandrianarivony/triangle-app:1.0.0'
-                }
+                bat 'docker build -t triangle-app:1.0 .'
             }
         }
     }
