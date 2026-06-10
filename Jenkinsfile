@@ -30,6 +30,23 @@ pipeline {
                 bat 'docker build -t triangle-app:1.0 .'
             }
         }
+        
+        stage('Push to Docker Hub') {
+            steps {
+                withCredentials([
+                  string(
+                      credentialsId: 'dockerhubpass',
+                       variable: 'dockerHubPass'
+                   )
+              ]) {
+                  bat '''
+                    docker login -u aaronandrianarivony -p %dockerHubPass%
+                    docker tag triangle-app:1.0 aaronandrianarivony/triangle-app:1.0
+                    docker push aaronandrianarivony/triangle-app:1.0
+                    '''
+              }
+            }
+        }
     }
 
     post {
