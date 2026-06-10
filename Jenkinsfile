@@ -1,9 +1,3 @@
-stage('Check Docker') {
-    steps {
-        bat 'docker --version'
-    }
-}
-
 pipeline {
     agent any
 
@@ -13,6 +7,12 @@ pipeline {
 
     stages {
 
+        stage('Check Docker') {
+            steps {
+                bat 'docker --version'
+            }
+        }
+        
         stage('Git Checkout') {
             steps {
                 git credentialsId: 'git_credentials',
