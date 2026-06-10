@@ -10,7 +10,7 @@ pipeline {
         stage('Git Checkout') {
             steps {
                 git credentialsId: 'git_credentials',
-                    url: 'https://github.com/TON_USERNAME_GITHUB/triangle-app.git'
+                    url: 'https://github.com/ron025533/triangle-app.git'
             }
         }
 
@@ -28,7 +28,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t TON_USERNAME_DOCKERHUB/triangle-app:1.0.0 .'
+                sh 'docker build -t aaronandrianarivony/triangle-app:1.0.0 .'
             }
         }
 
@@ -36,8 +36,8 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'dockerhubpass',
                                         variable: 'dockerHubPass')]) {
-                    sh 'docker login -u TON_USERNAME_DOCKERHUB -p $dockerHubPass'
-                    sh 'docker push TON_USERNAME_DOCKERHUB/triangle-app:1.0.0'
+                    sh 'docker login -u aaronandrianarivony -p $dockerHubPass'
+                    sh 'docker push aaronandrianarivony/triangle-app:1.0.0'
                 }
             }
         }
@@ -48,7 +48,7 @@ pipeline {
             emailext body: 'Ce Build $BUILD_NUMBER a echoue',
                      recipientProviders: [requestor()],
                      subject: 'Build echoue',
-                     to: 'ton_email@gmail.com'
+                     to: 'ron.andraina@gmail.com'
         }
     }
 }
