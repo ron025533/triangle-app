@@ -1,3 +1,9 @@
+stage('Check Docker') {
+    steps {
+        bat 'docker --version'
+    }
+}
+
 pipeline {
     agent any
 
