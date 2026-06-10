@@ -32,12 +32,12 @@ pipeline {
         }
     }
 
-    post {
-        failure {
-            emailext body: 'Ce Build $BUILD_NUMBER a echoue',
-                     recipientProviders: [requestor()],
-                     subject: 'Build echoue',
-                     to: 'ron.andraina@gmail.com'
-        }
-    }
+    // post {
+    //     failure {
+    //         emailext body: 'Ce Build $BUILD_NUMBER a echoue',
+    //                  recipientProviders: [requestor()],
+    //                  subject: 'Build echoue',
+    //                  to: 'ron.andraina@gmail.com'
+    //     }
+    // }
 }
