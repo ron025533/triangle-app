@@ -40,9 +40,9 @@ pipeline {
                    )
               ]) {
                   bat '''
-                    docker login -u aaronandrianarivony -p %dockerHubPass%
-                    docker tag triangle-app:1.0 aaronandrianarivony/triangle-app:1.0
-                    docker push aaronandrianarivony/triangle-app:1.0
+                    docker login -u aaronandrianarivonytt -p %dockerHubPass%
+                    docker tag triangle-app:1.0 aaronandrianarivonytt/triangle-app:1.0
+                    docker push aaronandrianarivonytt/triangle-app:1.0
                     '''
               }
             }
