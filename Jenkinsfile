@@ -49,6 +49,8 @@ pipeline {
         }
     }
 
+    // test
+
     post {
         failure {
             emailext body: 'Ce Build $BUILD_NUMBER a echoue',
